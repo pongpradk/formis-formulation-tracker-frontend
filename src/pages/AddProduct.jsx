@@ -10,10 +10,15 @@ function AddProduct() {
     brand: "",
     name: "",
     ingredients: "",
+    manufacturing_date: "",
+    expiration_date: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+
+  // Get today's date in YYYY-MM-DD format for min attribute
+  const today = new Date().toISOString().split("T")[0];
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -46,6 +51,21 @@ function AddProduct() {
       newErrors.ingredients = "List of ingredients is required";
     }
 
+    if (!formData.manufacturing_date) {
+      newErrors.manufacturing_date = "Manufacturing date is required";
+    }
+
+    if (!formData.expiration_date) {
+      newErrors.expiration_date = "Expiration date is required";
+    } else if (
+      formData.manufacturing_date &&
+      new Date(formData.expiration_date) <=
+        new Date(formData.manufacturing_date)
+    ) {
+      newErrors.expiration_date =
+        "Expiration date must be after manufacturing date";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -64,6 +84,8 @@ function AddProduct() {
         brand: formData.brand,
         name: formData.name,
         ingredients: formData.ingredients,
+        manufacturing_date: formData.manufacturing_date,
+        expiration_date: formData.expiration_date,
       });
 
       navigate("/");
@@ -119,6 +141,44 @@ function AddProduct() {
             {errors.ingredients && (
               <div className="error-message">{errors.ingredients}</div>
             )}
+          </div>
+
+          <div className="date-fields-container">
+            <div className="date-field">
+              <label className="date-label" htmlFor="manufacturing_date">
+                Manufacturing Date
+              </label>
+              <input
+                type="date"
+                id="manufacturing_date"
+                value={formData.manufacturing_date}
+                onChange={handleChange}
+                max={today}
+                required
+              />
+              {errors.manufacturing_date && (
+                <div className="error-message">{errors.manufacturing_date}</div>
+              )}
+              <div className="date-helper-text">Date of production</div>
+            </div>
+
+            <div className="date-field">
+              <label className="date-label" htmlFor="expiration_date">
+                Expiration Date
+              </label>
+              <input
+                type="date"
+                id="expiration_date"
+                value={formData.expiration_date}
+                onChange={handleChange}
+                min={formData.manufacturing_date || today}
+                required
+              />
+              {errors.expiration_date && (
+                <div className="error-message">{errors.expiration_date}</div>
+              )}
+              <div className="date-helper-text">When product expires</div>
+            </div>
           </div>
 
           {errors.form && <div className="error-message">{errors.form}</div>}

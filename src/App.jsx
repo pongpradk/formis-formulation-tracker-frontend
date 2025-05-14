@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AddProduct from "./pages/AddProduct";
+import ProductDetail from "./pages/ProductDetail";
 import ProtectedRoute from "./features/authentication/components/ProtectedRoute";
 
 function Logout() {
@@ -34,6 +35,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AddProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/product/:productId"
+          element={
+            <ProtectedRoute>
+              <ProductDetail />
             </ProtectedRoute>
           }
         />

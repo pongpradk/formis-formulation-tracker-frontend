@@ -109,8 +109,7 @@ function ProductDetail() {
         <div className="product-detail-actions">
           <button
             className="button primary-button"
-            onClick={() => alert("Edit functionality not yet implemented.")}
-            // Later: onClick={() => navigate(`/edit-product/${productId}`)}
+            onClick={() => navigate(`/product/${productId}/edit`)}
           >
             Edit
           </button>

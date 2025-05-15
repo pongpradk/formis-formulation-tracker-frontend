@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/apiService";
 import FormInput from "../components/FormInput";
-import "../assets/Product.css";
+import "../assets/AddProduct.css";
 import "../assets/Login.css"; // Reusing button styles
 
 function AddProduct() {
@@ -51,14 +51,12 @@ function AddProduct() {
       newErrors.ingredients = "List of ingredients is required";
     }
 
-    if (!formData.manufacturing_date) {
-      newErrors.manufacturing_date = "Manufacturing date is required";
-    }
+    // Manufacturing date is now optional
 
-    if (!formData.expiration_date) {
-      newErrors.expiration_date = "Expiration date is required";
-    } else if (
+    // Expiration date is now optional, but if both dates are provided, validate them
+    if (
       formData.manufacturing_date &&
+      formData.expiration_date &&
       new Date(formData.expiration_date) <=
         new Date(formData.manufacturing_date)
     ) {
@@ -84,8 +82,8 @@ function AddProduct() {
         brand: formData.brand,
         name: formData.name,
         ingredients: formData.ingredients,
-        manufacturing_date: formData.manufacturing_date,
-        expiration_date: formData.expiration_date,
+        manufacturing_date: formData.manufacturing_date || null,
+        expiration_date: formData.expiration_date || null,
       });
 
       navigate("/");
@@ -148,36 +146,34 @@ function AddProduct() {
               <label className="date-label" htmlFor="manufacturing_date">
                 Manufacturing Date
               </label>
+              <div className="optional-text">(optional)</div>
               <input
                 type="date"
                 id="manufacturing_date"
                 value={formData.manufacturing_date}
                 onChange={handleChange}
                 max={today}
-                required
               />
               {errors.manufacturing_date && (
                 <div className="error-message">{errors.manufacturing_date}</div>
               )}
-              <div className="date-helper-text">Date of production</div>
             </div>
 
             <div className="date-field">
               <label className="date-label" htmlFor="expiration_date">
                 Expiration Date
               </label>
+              <div className="optional-text">(optional)</div>
               <input
                 type="date"
                 id="expiration_date"
                 value={formData.expiration_date}
                 onChange={handleChange}
                 min={formData.manufacturing_date || today}
-                required
               />
               {errors.expiration_date && (
                 <div className="error-message">{errors.expiration_date}</div>
               )}
-              <div className="date-helper-text">When product expires</div>
             </div>
           </div>
 

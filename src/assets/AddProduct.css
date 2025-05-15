@@ -87,15 +87,16 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 .date-label {
   font-size: 0.9rem;
   font-weight: 500;
-  margin-bottom: 0.5rem;
   display: block;
 }
 
-/* Helper text for dates */
-.date-helper-text {
+/* Styling for optional text */
+.optional-text {
   font-size: 0.8rem;
-  color: #666;
-  margin-top: 0.25rem;
+  font-weight: normal;
+  color: #6b7280;
+  font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
 @media (min-width: 640px) {

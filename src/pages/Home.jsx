@@ -77,9 +77,6 @@ function Home() {
         <div className="no-products-message">
           <h3>No products found</h3>
           <p>Add your first product to start managing your collection.</p>
-          <button className="button primary-button" onClick={handleAddProduct}>
-            Add Product
-          </button>
         </div>
       ) : (
         <div className="product-grid">

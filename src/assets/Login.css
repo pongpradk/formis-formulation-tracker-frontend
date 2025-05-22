@@ -9,6 +9,22 @@
   margin: 0 auto;
 }
 
+.logo-container {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.formis-logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e3bc6a;
+  margin: 0;
+}
+
 .login-form {
   width: 100%;
   max-width: 350px;
@@ -50,7 +66,7 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #7bcc0a;
+  border-color: #e3bc6a;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
@@ -66,18 +82,18 @@
 }
 
 .primary-button {
-  background-color: #7bcc0a;
+  background-color: #e3bc6a;
   color: white;
 }
 
 .primary-button:hover {
-  background-color: #77ba18;
+  background-color: #c9a155;
 }
 
 .secondary-button {
   background-color: transparent;
-  color: #7bcc0a;
-  border: 1px solid #7bcc0a;
+  color: #e3bc6a;
+  border: 1px solid #e3bc6a;
   margin-top: 0.75rem;
 }
 

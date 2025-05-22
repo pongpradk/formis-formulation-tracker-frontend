@@ -75,6 +75,11 @@ function Register() {
 
   return (
     <div className="login-container">
+      <div className="logo-container">
+        <Link to="/" className="logo-link">
+          <h1 className="formis-logo">Formis</h1>
+        </Link>
+      </div>
       <div className="login-form">
         <div className="login-header">
           <h2>Create your account</h2>

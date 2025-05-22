@@ -31,7 +31,7 @@
 .add-product-button {
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  background-color: #7bcc0a;
+  background-color: #e3bc6a;
   color: white;
   font-weight: 500;
   cursor: pointer;
@@ -40,7 +40,7 @@
 }
 
 .add-product-button:hover {
-  background-color: #77ba18;
+  background-color: #c9a155;
 }
 
 .no-products-message {

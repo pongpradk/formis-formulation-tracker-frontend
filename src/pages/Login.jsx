@@ -67,7 +67,7 @@ function Login() {
 
       localStorage.setItem(ACCESS_TOKEN, response.data.access);
       localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
-      navigate("/");
+      navigate("/products");
     } catch (error) {
       setError(
         "Wrong password. Try again or click Forgot password to reset it."
@@ -77,6 +77,11 @@ function Login() {
 
   return (
     <div className="login-container">
+      <div className="logo-container">
+        <Link to="/" className="logo-link">
+          <h1 className="formis-logo">Formis</h1>
+        </Link>
+      </div>
       <div className="login-form">
         <div className="login-header">
           <h2>Welcome back</h2>

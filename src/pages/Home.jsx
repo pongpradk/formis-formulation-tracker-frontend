@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "../assets/Home.css";
 import { ACCESS_TOKEN } from "../features/authentication/utils/constants";
 import MainLayout from "../components/MainLayout";
-import ProfileButton from "../features/authentication/components/ProfileButton";
 
 function HomeContent({ isAuthenticated }) {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ function HomeContent({ isAuthenticated }) {
           </h1>
           <p className="hero-subtitle">
             Compare ingredients, track expiration dates, and ensure formula
-            consistency for your skincare, makeup, and supplements.
+            consistency for your skincare, supplements, and more.
           </p>
           <div className="cta-buttons">
             {isAuthenticated ? (
@@ -92,10 +91,7 @@ function HomeContent({ isAuthenticated }) {
           <div className="step">
             <div className="step-number">1</div>
             <h3>Add Your Products</h3>
-            <p>
-              Upload photos or manually add your skincare, makeup, and
-              supplements.
-            </p>
+            <p>Scan, upload photos, or manually add your favorite products.</p>
           </div>
           <div className="step">
             <div className="step-number">2</div>

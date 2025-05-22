@@ -7,12 +7,8 @@ import NotFound from "./pages/NotFound";
 import AddProduct from "./pages/AddProduct";
 import ProductDetail from "./pages/ProductDetail";
 import EditProduct from "./pages/EditProduct";
+import MainLayout from "./components/MainLayout";
 import ProtectedRoute from "./features/authentication/components/ProtectedRoute";
-
-function Logout() {
-  localStorage.clear();
-  return <Navigate to="/login" />;
-}
 
 function RegisterAndLogout() {
   localStorage.clear();
@@ -27,7 +23,9 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <Home />
+              <MainLayout>
+                <Home />
+              </MainLayout>
             </ProtectedRoute>
           }
         />
@@ -35,7 +33,9 @@ function App() {
           path="/add-product"
           element={
             <ProtectedRoute>
-              <AddProduct />
+              <MainLayout>
+                <AddProduct />
+              </MainLayout>
             </ProtectedRoute>
           }
         />
@@ -43,7 +43,9 @@ function App() {
           path="/product/:productId"
           element={
             <ProtectedRoute>
-              <ProductDetail />
+              <MainLayout>
+                <ProductDetail />
+              </MainLayout>
             </ProtectedRoute>
           }
         />
@@ -51,12 +53,14 @@ function App() {
           path="/product/:productId/edit"
           element={
             <ProtectedRoute>
-              <EditProduct />
+              <MainLayout>
+                <EditProduct />
+              </MainLayout>
             </ProtectedRoute>
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
+        <Route path="/logout" element={<Navigate to="/login" />} />
         <Route path="/register" element={<RegisterAndLogout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

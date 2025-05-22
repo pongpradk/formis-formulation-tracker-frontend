@@ -2,6 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
+  padding-top: 0; /* Remove top padding as MainLayout now handles this */
 }
 
 .home-header {
@@ -11,6 +12,7 @@
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e2e8f0;
+  position: relative; /* For positioning context */
 }
 
 .home-header h1 {

@@ -1,11 +1,11 @@
-.home-container {
+.products-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
   padding-top: 0; /* Remove top padding as MainLayout now handles this */
 }
 
-.home-header {
+.products-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +15,7 @@
   position: relative; /* For positioning context */
 }
 
-.home-header h1 {
+.products-header h1 {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 600;
@@ -82,13 +82,13 @@
 }
 
 @media (max-width: 640px) {
-  .home-header {
+  .products-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
   
-  .home-header button {
+  .products-header button {
     width: 100%;
   }
   

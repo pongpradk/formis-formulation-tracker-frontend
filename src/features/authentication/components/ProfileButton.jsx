@@ -79,7 +79,7 @@ function ProfileButton() {
                 disabled={isLoggingOut}
                 className="logout-button"
               >
-                {isLoggingOut ? "Logging out..." : "Logout"}
+                Logout
               </button>
             </li>
           </ul>

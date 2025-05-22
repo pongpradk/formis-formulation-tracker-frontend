@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../features/inventory/components/ProductCard";
 import api from "../services/apiService";
-import "../assets/Home.css";
+import "../assets/Products.css";
 import "../assets/Login.css"; // Reusing button styles
 
-function Home() {
+function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,8 +34,8 @@ function Home() {
 
   if (loading) {
     return (
-      <div className="home-container">
-        <div className="home-header">
+      <div className="products-container">
+        <div className="products-header">
           <h1>My Products</h1>
           <button className="button primary-button" onClick={handleAddProduct}>
             Add Product
@@ -50,8 +50,8 @@ function Home() {
 
   if (error) {
     return (
-      <div className="home-container">
-        <div className="home-header">
+      <div className="products-container">
+        <div className="products-header">
           <h1>My Products</h1>
           <button className="button primary-button" onClick={handleAddProduct}>
             Add Product
@@ -65,8 +65,8 @@ function Home() {
   }
 
   return (
-    <div className="home-container">
-      <div className="home-header">
+    <div className="products-container">
+      <div className="products-header">
         <h1>My Products</h1>
         <button className="button primary-button" onClick={handleAddProduct}>
           Add Product
@@ -89,4 +89,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Products;

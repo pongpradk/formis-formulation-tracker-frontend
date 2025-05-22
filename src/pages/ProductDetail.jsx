@@ -40,7 +40,7 @@ function ProductDetail() {
     setIsModalOpen(false); // Close modal first
     try {
       await api.delete(`/inventory/products/delete/${productId}/`);
-      navigate("/"); // Redirect to homepage after successful deletion
+      navigate("/"); // Redirect to Productspage after successful deletion
     } catch (err) {
       console.error("Error deleting product:", err);
       setError("Failed to delete product. Please try again.");

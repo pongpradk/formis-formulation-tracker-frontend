@@ -9,6 +9,7 @@ import ProductDetail from "./pages/ProductDetail";
 import EditProduct from "./pages/EditProduct";
 import MainLayout from "./components/MainLayout";
 import ProtectedRoute from "./features/authentication/components/ProtectedRoute";
+import Home from "./pages/Home";
 
 function RegisterAndLogout() {
   localStorage.clear();
@@ -19,8 +20,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
+          path="/products"
           element={
             <ProtectedRoute>
               <MainLayout>

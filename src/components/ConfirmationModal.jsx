@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTimesCircle } from "react-icons/fa";
 import "../assets/Modal.css";
 
 function ConfirmationModal({
@@ -19,8 +20,12 @@ function ConfirmationModal({
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h3>{title}</h3>
-          <button className="modal-close-button" onClick={onClose}>
-            &times;
+          <button
+            className="modal-close-button"
+            onClick={onClose}
+            aria-label="Close"
+          >
+            <FaTimesCircle />
           </button>
         </div>
         <div className="modal-body">

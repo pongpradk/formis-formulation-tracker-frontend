@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaEdit, FaTrashAlt, FaCalendarAlt } from "react-icons/fa";
 import api from "../services/apiService";
 import ConfirmationModal from "../components/ConfirmationModal";
 import "../assets/ProductDetail.css"; // For product detail specific styles
-import "../assets/Login.css"; // Reusing button styles
-import "../assets/Modal.css"; // For Modal styles, if not globally imported
 
 function ProductDetail() {
   const { productId } = useParams();
@@ -40,7 +39,7 @@ function ProductDetail() {
     setIsModalOpen(false); // Close modal first
     try {
       await api.delete(`/inventory/products/delete/${productId}/`);
-      navigate("/"); // Redirect to Productspage after successful deletion
+      navigate("/products"); // Redirect to Products page after successful deletion
     } catch (err) {
       console.error("Error deleting product:", err);
       setError("Failed to delete product. Please try again.");
@@ -63,19 +62,15 @@ function ProductDetail() {
   };
 
   if (isLoading) {
-    return (
-      <div className="product-detail-container loading-state">
-        Loading product details...
-      </div>
-    );
+    return <div className="loading-state">Loading product details...</div>;
   }
 
   if (error) {
-    return <div className="product-detail-container error-state">{error}</div>;
+    return <div className="error-state">{error}</div>;
   }
 
   if (!product) {
-    return <div className="product-detail-container">Product not found.</div>;
+    return <div className="error-state">Product not found.</div>;
   }
 
   return (
@@ -95,11 +90,17 @@ function ProductDetail() {
 
         <div className="product-detail-dates">
           <div className="date-item">
-            <h3>Manufacturing Date</h3>
+            <h3>
+              <FaCalendarAlt aria-hidden="true" />
+              <span>Manufacturing Date</span>
+            </h3>
             <p>{formatDate(product.manufacturing_date)}</p>
           </div>
           <div className="date-item">
-            <h3>Expiration Date</h3>
+            <h3>
+              <FaCalendarAlt aria-hidden="true" />
+              <span>Expiration Date</span>
+            </h3>
             <p>{formatDate(product.expiration_date)}</p>
           </div>
         </div>
@@ -111,13 +112,13 @@ function ProductDetail() {
             className="button primary-button"
             onClick={() => navigate(`/product/${productId}/edit`)}
           >
-            Edit
+            <FaEdit aria-hidden="true" /> <span>Edit</span>
           </button>
           <button
             className="button danger-outline-button"
             onClick={openDeleteModal}
           >
-            Delete
+            <FaTrashAlt aria-hidden="true" /> <span>Delete</span>
           </button>
         </div>
       </div>

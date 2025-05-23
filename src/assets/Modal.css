@@ -1,3 +1,21 @@
+:root {
+  --primary-color: #e3bc6a;
+  --primary-dark: #c9a155;
+  --secondary-color: #f5d68a;
+  --accent-color: #faebc4;
+  --text-color: #333333;
+  --light-text: #666666;
+  --lightest-text: #999999;
+  --background-color: #ffffff;
+  --light-background: #f9f9f9;
+  --border-color: #eeeeee;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 8px;
+  --danger-color: #ef4444;
+  --danger-dark: #dc2626;
+  --danger-light: #fef2f2;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -10,16 +28,18 @@
   justify-content: center;
   z-index: 1000;
   padding: 1rem;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--background-color);
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   width: 100%;
   max-width: 400px;
   animation: modal-fade-in 0.3s ease-out;
+  border: 1px solid var(--border-color);
 }
 
 .modal-header {
@@ -27,7 +47,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.75rem;
 }
 
@@ -35,33 +55,42 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .modal-close-button {
   background: none;
   border: none;
-  font-size: 1.75rem;
-  font-weight: bold;
-  color: #6b7280; /* Gray-500 */
+  color: var(--light-text);
   cursor: pointer;
   padding: 0.25rem;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .modal-close-button:hover {
-  color: #1f2937; /* Gray-800 */
+  color: var(--text-color);
+  transform: scale(1.1);
+}
+
+.modal-close-button svg {
+  font-size: 1.25rem;
 }
 
 .modal-body {
   margin-bottom: 1.5rem;
   font-size: 1rem;
-  color: #4b5563; /* Gray-600 */
+  color: var(--light-text);
+  line-height: 1.5;
 }
 
 .modal-footer {
   display: flex;
   justify-content: flex-end;
-  align-items: stretch;
+  align-items: center;
   gap: 0.75rem;
 }
 

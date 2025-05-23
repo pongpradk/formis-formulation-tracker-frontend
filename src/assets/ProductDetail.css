@@ -123,7 +123,7 @@
 
 .product-detail-actions {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 1rem;
@@ -132,17 +132,29 @@
 }
 
 .button {
-  padding: 0.75rem 1.25rem;
   border-radius: var(--radius);
   font-weight: 500;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
+  min-width: fit-content;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+  flex: 0 1 auto;
+}
+
+.button-content {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  height: 100%;
+  width: 100%;
+  padding: 0 1.25rem;
+  white-space: nowrap;
 }
 
 .primary-button {
@@ -242,6 +254,22 @@
     padding: 2rem;
     margin-top: 2rem;
   }
+
+  .product-detail-actions {
+    align-items: center;
+  }
+  
+  .button {
+    flex-basis: auto;
+    padding: 0 1.25rem;
+    height: 44px;
+  }
+  
+  .primary-button,
+  .secondary-button,
+  .danger-outline-button {
+    height: 44px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -257,4 +285,24 @@
   .product-detail-header h1 {
     font-size: 2rem;
   }
+}
+
+/* Mobile-specific button adjustments */
+@media (max-width: 480px) {
+  .product-detail-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .button {
+    width: 100%;
+  }
+}
+
+/* Ensure consistent heights and widths for specific button types */
+.product-detail-actions .compare-button,
+.product-detail-actions .edit-button,
+.product-detail-actions .delete-button {
+  min-width: 120px;
+  height: 44px;
 } 

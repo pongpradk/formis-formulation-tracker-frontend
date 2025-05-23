@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaEdit, FaTrashAlt, FaCalendarAlt } from "react-icons/fa";
+import {
+  FaEdit,
+  FaTrashAlt,
+  FaCalendarAlt,
+  FaExchangeAlt,
+} from "react-icons/fa";
 import api from "../services/apiService";
 import ConfirmationModal from "../components/ConfirmationModal";
+import IngredientCompareModal from "../features/inventory/components/IngredientCompareModal";
 import "../assets/ProductDetail.css"; // For product detail specific styles
 
 function ProductDetail() {
@@ -11,7 +17,8 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -36,7 +43,7 @@ function ProductDetail() {
   }, [productId]);
 
   const handleDelete = async () => {
-    setIsModalOpen(false); // Close modal first
+    setIsDeleteModalOpen(false); // Close modal first
     try {
       await api.delete(`/inventory/products/delete/${productId}/`);
       navigate("/products"); // Redirect to Products page after successful deletion
@@ -48,11 +55,19 @@ function ProductDetail() {
   };
 
   const openDeleteModal = () => {
-    setIsModalOpen(true);
+    setIsDeleteModalOpen(true);
   };
 
   const closeDeleteModal = () => {
-    setIsModalOpen(false);
+    setIsDeleteModalOpen(false);
+  };
+
+  const openCompareModal = () => {
+    setIsCompareModalOpen(true);
+  };
+
+  const closeCompareModal = () => {
+    setIsCompareModalOpen(false);
   };
 
   const formatDate = (dateString) => {
@@ -109,27 +124,46 @@ function ProductDetail() {
 
         <div className="product-detail-actions">
           <button
-            className="button primary-button"
-            onClick={() => navigate(`/product/${productId}/edit`)}
+            className="button secondary-button compare-button"
+            onClick={openCompareModal}
           >
-            <FaEdit aria-hidden="true" /> <span>Edit</span>
+            <span className="button-content">
+              <FaExchangeAlt aria-hidden="true" /> <span>Compare</span>
+            </span>
           </button>
           <button
-            className="button danger-outline-button"
+            className="button primary-button edit-button"
+            onClick={() => navigate(`/product/${productId}/edit`)}
+          >
+            <span className="button-content">
+              <FaEdit aria-hidden="true" /> <span>Edit</span>
+            </span>
+          </button>
+          <button
+            className="button danger-outline-button delete-button"
             onClick={openDeleteModal}
           >
-            <FaTrashAlt aria-hidden="true" /> <span>Delete</span>
+            <span className="button-content">
+              <FaTrashAlt aria-hidden="true" /> <span>Delete</span>
+            </span>
           </button>
         </div>
       </div>
 
       <ConfirmationModal
-        isOpen={isModalOpen}
+        isOpen={isDeleteModalOpen}
         onClose={closeDeleteModal}
         onConfirm={handleDelete}
         title="Delete Product"
         message={`Are you sure you want to delete "${product.brand} ${product.name}"? This action cannot be undone.`}
         confirmText="Delete"
+      />
+
+      <IngredientCompareModal
+        isOpen={isCompareModalOpen}
+        onClose={closeCompareModal}
+        productName={product.name}
+        productBrand={product.brand}
       />
     </div>
   );

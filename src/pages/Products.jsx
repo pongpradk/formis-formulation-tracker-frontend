@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "../features/inventory/components/ProductCard";
 import api from "../services/apiService";
 import "../assets/Products.css";
-import "../assets/Login.css"; // Reusing button styles
+import { FaPlus } from "react-icons/fa"; // Import plus icon
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -36,9 +36,12 @@ function Products() {
     return (
       <div className="products-container">
         <div className="products-header">
-          <h1>My Products</h1>
-          <button className="button primary-button" onClick={handleAddProduct}>
-            Add Product
+          <button
+            className="add-product-btn"
+            onClick={handleAddProduct}
+            aria-label="Add product"
+          >
+            <FaPlus />
           </button>
         </div>
         <div className="loading-container">
@@ -52,9 +55,12 @@ function Products() {
     return (
       <div className="products-container">
         <div className="products-header">
-          <h1>My Products</h1>
-          <button className="button primary-button" onClick={handleAddProduct}>
-            Add Product
+          <button
+            className="add-product-btn"
+            onClick={handleAddProduct}
+            aria-label="Add product"
+          >
+            <FaPlus />
           </button>
         </div>
         <div className="error-container">
@@ -67,9 +73,12 @@ function Products() {
   return (
     <div className="products-container">
       <div className="products-header">
-        <h1>My Products</h1>
-        <button className="button primary-button" onClick={handleAddProduct}>
-          Add Product
+        <button
+          className="add-product-btn"
+          onClick={handleAddProduct}
+          aria-label="Add product"
+        >
+          <FaPlus />
         </button>
       </div>
 

@@ -86,7 +86,7 @@ function AddProduct() {
         expiration_date: formData.expiration_date || null,
       });
 
-      navigate("/");
+      navigate("/products");
     } catch (error) {
       console.error("Error adding product:", error);
       setErrors({
@@ -191,7 +191,7 @@ function AddProduct() {
             <button
               type="button"
               className="button secondary-button"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/products")}
               disabled={isSubmitting}
             >
               Cancel

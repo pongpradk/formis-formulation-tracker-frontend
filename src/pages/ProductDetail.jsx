@@ -164,6 +164,7 @@ function ProductDetail() {
         onClose={closeCompareModal}
         productName={product.name}
         productBrand={product.brand}
+        productId={productId}
       />
     </div>
   );
